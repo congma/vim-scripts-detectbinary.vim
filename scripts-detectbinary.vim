@@ -9,7 +9,6 @@ if executable('file')
     let s:type = system('file -bEpi ' . shellescape(expand('%:p')))
     if s:type =~ '\<charset=binary\>'
 	setfiletype binary
-	setlocal binary
     endif
 endif
 
