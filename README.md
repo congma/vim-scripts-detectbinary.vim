@@ -6,7 +6,7 @@ external command `file`.  If it thinks it is, `filetype` is set to `binary`.
 The script doesn't interfere with Vim's other plugins for binary-formats, such 
 as archive readers.
 
-The script does nothing more than setting this `filetyle`.  Typically, you'll 
+The script does nothing more than setting this `filetype`.  Typically, you'll 
 want to use this information for further customizing, possibly using 
 autocommands.
 
