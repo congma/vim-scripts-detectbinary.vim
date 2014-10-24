@@ -27,8 +27,31 @@ In your `~/.vimrc` file:
 if has('autocmd')
   augroup vimrc_BinaryFT
     autocmd!
+    " Prevent damaging binary file.
+    autocmd FileType binary setlocal binary nomodifiable
+  augroup END
+endif
+```
+
+You can add more fancy settings if you think it's really a good idea though ...
+
+```viml
+if has('autocmd')
+  augroup vimrc_BinaryFT
+    autocmd!
+    " Prevent damaging binary file & better display, using local options.
     autocmd FileType binary
-\           setlocal binary display=uhex nobreakindent showbreak=
+          \ setlocal binary list nobreakindent nosmartindent noautoindent |
+          \          nomodifiable syntax=
+    " Global options that toggle when switching from text to binary or v. v.
+    " May leave artifacts when showing binary and text files in split windows.
+    " Can be cleared by :redraw!
+    autocmd TabEnter,BufEnter,WinEnter *
+          \ if &filetype == 'binary' |
+          \   set display+=uhex showbreak= |
+          \ else |
+          \   set display-=uhex showbreak=>\ |
+	  \ endif
   augroup END
 endif
 ```
