@@ -6,8 +6,9 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 if executable('file')
-    let s:type = system('file -bEpiL ' . shellescape(expand('%:p')))
-    if s:type =~ '\<charset=binary\>' && s:type !~ '^inode'
+    silent let s:type = system('file -bEiLp ' . shellescape(expand('%:p')))
+    if (!v:shell_error) && s:type =~ '\<charset=binary\>'
+		\ && s:type !~ '^inode'
 	setfiletype binary
     endif
 endif
