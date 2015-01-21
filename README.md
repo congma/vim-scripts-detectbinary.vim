@@ -41,16 +41,16 @@ if has('autocmd')
     autocmd!
     " Prevent damaging binary file & better display, using local options.
     autocmd FileType binary
-          \ setlocal binary nobreakindent nosmartindent noautoindent
+          \ setlocal binary nosmartindent noautoindent
           \          noexpandtab nosmarttab nomodifiable syntax=
     " Global options that toggle when switching from text to binary or
     " v. v.  May leave artifacts when showing binary and text files
     " side-by-side in split windows.  Can be cleared by :redraw!
     autocmd WinEnter,BufEnter,BufNewFile *
           \ if &binary |
-          \   set display+=uhex showbreak= |
+          \   set display+=uhex |
           \ else |
-          \   set display-=uhex showbreak=>\ |
+          \   set display-=uhex |
           \ endif
   augroup END
 endif
