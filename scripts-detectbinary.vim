@@ -6,7 +6,14 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 if executable('file')
-    silent let s:type = system('file -biLp ' . shellescape(expand('%:p')))
+    silent let s:osname = system('uname -s')
+    if s:osname == 'Darwin'	" Mac OS X
+	silent let s:mimearg = 'I'
+    else
+	silent let s:mimearg = 'i'
+    endif
+    silent let s:type = system('file -b'
+		\ . s:mimearg . 'Lp ' . shellescape(expand('%:p')))
     if (!v:shell_error) && s:type =~ '\<charset=binary\>'
 		\ && s:type !~ '^inode'
 		\ && s:type !~ '\<application/x-empty\>'
