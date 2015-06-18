@@ -8,9 +8,9 @@ set cpo&vim
 if executable('file')
     silent let s:osname = system('uname -s')
     if s:osname == 'Darwin'	" Mac OS X
-	silent let s:mimearg = 'I'
+	let s:mimearg = 'I'
     else
-	silent let s:mimearg = 'i'
+	let s:mimearg = 'i'
     endif
     silent let s:type = system('file -b'
 		\ . s:mimearg . 'Lp ' . shellescape(expand('%:p')))
